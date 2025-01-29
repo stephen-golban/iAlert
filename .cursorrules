@@ -1,0 +1,3 @@
+Be modular and use hooks to manage state and effects.
+Make use of SOLID principles.
+Make use of modules for the routes content instead of having everything in the route files.
