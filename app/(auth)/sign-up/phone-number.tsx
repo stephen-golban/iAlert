@@ -1,4 +1,4 @@
-import { PhoneNumberScreen } from "@/modules/auth";
+import { PhoneNumberScreen } from "~/modules/auth";
 
 export default function PhoneNumber() {
   return <PhoneNumberScreen />;

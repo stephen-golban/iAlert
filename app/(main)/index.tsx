@@ -1,4 +1,4 @@
-import { MainScreen } from "@/modules/app";
+import { MainScreen } from "~/modules/app";
 
 export default function Main() {
   return <MainScreen />;
