@@ -1,48 +1,36 @@
 import "../global.css";
 
-import { useFonts } from "expo-font";
+import { useEffect } from "react";
 import { useAppInit } from "~/lib/hooks";
-
 import { Stack } from "expo-router";
+import { storage } from "~/lib/storage";
 import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
-import { ErrorBoundary, Providers } from "~/components/common";
+import { Providers } from "~/components/common";
 import { SplashScreen as CustomSplashScreen } from "~/components/common";
 
 import "react-native-reanimated";
 
-const SpaceMono = require("../assets/fonts/SpaceMono-Regular.ttf");
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync().catch(() => {});
 
 export default function RootLayout() {
-  const [fontsLoaded] = useFonts({ SpaceMono });
-
   const { isReady, handleLayoutReady } = useAppInit({
-    dependencies: [fontsLoaded],
-    initializationTasks: [fontsLoaded as unknown as Promise<any>],
-    onError: (error) => {
-      console.error("App initialization failed:", error);
-    },
+    initializationTasks: [storage.init()],
   });
 
-  if (!isReady || !fontsLoaded) {
+  if (!isReady) {
     return <CustomSplashScreen />;
   }
 
   return (
-    <Providers>
-      <ErrorBoundary onLayout={handleLayoutReady}>
-        <Stack screenOptions={{ headerShown: true }}>
-          <Stack.Screen name="index" options={{ headerShown: true }} />
-          <Stack.Screen name="(auth)" options={{ headerShown: true }} />
-          <Stack.Screen name="(main)" options={{ headerShown: true }} />
-
-          <Stack.Screen name="+not-found" options={{ headerShown: true }} />
-        </Stack>
-        <StatusBar style="auto" />
-      </ErrorBoundary>
+    <Providers onLayout={handleLayoutReady}>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(main)" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" options={{ headerShown: false }} />
+      </Stack>
+      <StatusBar style="auto" />
     </Providers>
   );
 }

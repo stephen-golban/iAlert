@@ -1,9 +1,9 @@
+import { storage } from "~/lib/storage";
 import { QueryClient } from "@tanstack/react-query";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister";
 import { PersistQueryClientOptions } from "@tanstack/react-query-persist-client";
+import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister";
 
-// Create a client
+// Create a client with error handling
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -20,13 +20,34 @@ export const queryClient = new QueryClient({
   },
 });
 
-// Create a persister
+// Create a persister with custom storage wrapper
 export const asyncStoragePersister = createAsyncStoragePersister({
-  storage: AsyncStorage,
+  storage: {
+    getItem: async (key) => {
+      try {
+        return await storage.getItem(key);
+      } catch (error) {
+        console.warn("Failed to get persisted query cache:", error);
+        return null;
+      }
+    },
+    setItem: async (key, value) => {
+      try {
+        await storage.setItem(key, value);
+      } catch (error) {
+        console.warn("Failed to persist query cache:", error);
+      }
+    },
+    removeItem: async (key) => {
+      try {
+        await storage.removeItem(key);
+      } catch (error) {
+        console.warn("Failed to remove persisted query cache:", error);
+      }
+    },
+  },
   key: "REACT_QUERY_OFFLINE_CACHE",
   throttleTime: 1000,
-  serialize: JSON.stringify,
-  deserialize: JSON.parse,
 });
 
 export const persistOptions: Omit<PersistQueryClientOptions, "queryClient"> = {

@@ -12,8 +12,13 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-export const Providers: React.FC<React.PropsWithChildren> = ({ children }) => {
+interface ProvidersProps extends React.PropsWithChildren {
+  onLayout: () => Promise<void>;
+}
+
+export function Providers({ children, onLayout }: ProvidersProps) {
   const { colorScheme } = useColorScheme();
 
   // Setup online status and app state management
@@ -25,13 +30,16 @@ export const Providers: React.FC<React.PropsWithChildren> = ({ children }) => {
       client={queryClient}
       persistOptions={persistOptions}
     >
-      <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <SafeAreaProvider
+        onLayout={onLayout}
+        initialMetrics={initialWindowMetrics}
+      >
         <ThemeProvider
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
-          {children}
+          <GestureHandlerRootView>{children}</GestureHandlerRootView>
         </ThemeProvider>
       </SafeAreaProvider>
     </PersistQueryClientProvider>
   );
-};
+}
