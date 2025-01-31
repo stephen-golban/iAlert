@@ -1,3 +1,4 @@
+export * from "./icon";
 export * from "./providers";
 export * from "./container";
 export * from "./empty-state";

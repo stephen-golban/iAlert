@@ -42,6 +42,9 @@ module.exports = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
+      fontFamily: {
+        sans: ['Roboto', 'sans-serif'],
+      },      
       borderWidth: {
         hairline: hairlineWidth(),
       },

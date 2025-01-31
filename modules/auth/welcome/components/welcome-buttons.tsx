@@ -1,24 +1,21 @@
-import { View } from "react-native";
 import { Link } from "expo-router";
+import { View } from "react-native";
 import { Text } from "~/components/ui";
 
 export function WelcomeButtons() {
   return (
-    <View className="px-4 pb-8 space-y-4">
+    <View className="w-full gap-y-4">
       <Link
         href="/(auth)/sign-up/phone-number"
-        className="bg-blue-500 py-4 rounded-full items-center"
+        className="bg-white rounded-full py-5 text-center"
       >
-        <Text className="text-white font-semibold text-lg">Create account</Text>
+        <Text className="text-black text-base font-medium">Create account</Text>
       </Link>
-
       <Link
         href="/(auth)/sign-in"
-        className="bg-gray-100 dark:bg-gray-800 py-4 rounded-full items-center"
+        className="bg-[#121212] py-5 rounded-full text-center"
       >
-        <Text className="text-gray-900 dark:text-white font-semibold text-lg">
-          Login
-        </Text>
+        <Text className="text-white native:text-lg font-medium">Login</Text>
       </Link>
     </View>
   );
