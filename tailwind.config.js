@@ -13,6 +13,8 @@ module.exports = {
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        'button-dark': 'hsl(var(--button-dark))',
+        'transparent-white': 'rgba(255, 255, 255, 0.1)',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',

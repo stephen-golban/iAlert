@@ -14,7 +14,7 @@ const Container: React.FC<IContainer> = ({
   children,
   style,
   className,
-  removeEdges = [],
+  removeEdges = ["bottom"],
 }) => {
   const edges = EDGES.filter((edge) => !removeEdges?.includes(edge));
 

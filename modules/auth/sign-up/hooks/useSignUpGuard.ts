@@ -26,19 +26,19 @@ export function useSignUpGuard() {
     switch (pathname) {
       case "(auth)/sign-up/otp":
         if (!params.phoneNumber) {
-          router.replace("sign-up/phone-number");
+          router.replace("/sign-up/phone-number");
         }
         break;
 
       case "(auth)/sign-up/user-info":
         if (!params.phoneNumber || !params.otp) {
-          router.replace("sign-up/phone-number");
+          router.replace("/sign-up/phone-number");
         }
         break;
 
       case "(auth)/sign-up/car-info":
         if (!params.phoneNumber || !params.otp || !params.userInfo) {
-          router.replace("sign-up/phone-number");
+          router.replace("/sign-up/phone-number");
         }
         break;
     }
