@@ -1,34 +1,29 @@
 import React from "react";
 
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-
-import { Container } from "~/components/common";
-import { StyleSheet, View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import { AuthHeader, PhoneAuthForm } from "../components";
+import { LayoutWrapper, PhoneAuthForm } from "../components";
+import { useRouter } from "expo-router";
 
 export function ForgotPasswordScreen() {
-  const { bottom, top } = useSafeAreaInsets();
-
+  const navigation = useRouter();
+  const onSubmit = async (data: any) => {
+    try {
+      // TODO: Implement sign in logic
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate API call delay
+      navigation.replace("/(auth)/otp");
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
-    <Container removeEdges={["top", "bottom"]}>
-      <LinearGradient
-        className="flex-1 h-full"
-        colors={["#18246d", "black"]}
-        style={StyleSheet.absoluteFillObject}
+    <LayoutWrapper>
+      <PhoneAuthForm
+        hideQuestion
+        hideSocialAuth
+        onSubmit={onSubmit}
+        title="Enter phone number"
+        subtitle="Make sure it's the number you use with the iAlert account you lost access to"
       />
-      <View
-        className="px-4 flex-1"
-        style={{ paddingTop: top, paddingBottom: bottom }}
-      >
-        <AuthHeader />
-        <PhoneAuthForm
-          hideQuestion
-          hideSocialAuth
-          title="Enter phone number"
-          subtitle="Make sure it's the number you use with the iAlert account you lost access to"
-        />
-      </View>
-    </Container>
+    </LayoutWrapper>
   );
 }

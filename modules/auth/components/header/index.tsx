@@ -9,7 +9,7 @@ export function AuthHeader() {
   const router = useRouter();
 
   return (
-    <View className="py-2">
+    <View className="py-2 ml-5">
       <Button
         size="icon"
         variant="ghost"

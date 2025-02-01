@@ -1,3 +1,5 @@
+import React from "react";
+
 import { usePhoneAuthForm } from "./hook";
 
 import { Link } from "expo-router";
@@ -5,12 +7,13 @@ import { View } from "react-native";
 import { Controller } from "react-hook-form";
 import { Button, Text } from "~/components/ui";
 import {
+  Icon,
   PhoneInput,
   KeyboardAware,
   LoadingSpinner,
-  Icon,
 } from "~/components/common";
-import React from "react";
+
+import { type PhoneAuthFormData } from "./schema";
 
 interface IPhoneAuthForm {
   title?: string;
@@ -19,6 +22,7 @@ interface IPhoneAuthForm {
   questionText?: string;
   hideQuestion?: boolean;
   hideSocialAuth?: boolean;
+  onSubmit: (args: PhoneAuthFormData) => void;
 }
 
 const TITLE = "Welcome back";
@@ -27,6 +31,7 @@ const QUESTION = "Lost access to my phone number";
 const SUBTITLE = "Enter the phone number associated with your iAlert account";
 
 const PhoneAuthForm: React.FC<IPhoneAuthForm> = ({
+  onSubmit,
   title = TITLE,
   subtitle = SUBTITLE,
   hideQuestion = false,
@@ -34,12 +39,12 @@ const PhoneAuthForm: React.FC<IPhoneAuthForm> = ({
   questionText = QUESTION,
   buttonText = BUTTON_TEXT,
 }) => {
-  const { control, errors, isSubmitting, onSubmit, isValid } =
+  const { control, errors, isSubmitting, handleSubmit, isValid } =
     usePhoneAuthForm();
 
   return (
     <KeyboardAware>
-      <View className="flex-1 mt-4">
+      <View className="flex-1 bg-transparent">
         <Text className="text-white text-4xl font-bold mb-4">{title}</Text>
         <Text className="text-gray-400 text-base mb-8">{subtitle}</Text>
 
@@ -66,7 +71,7 @@ const PhoneAuthForm: React.FC<IPhoneAuthForm> = ({
 
         <Button
           size="lg"
-          onPress={onSubmit}
+          onPress={handleSubmit(onSubmit)}
           disabled={isSubmitting || !isValid}
           className="rounded-full my-4 bg-white"
         >
