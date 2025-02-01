@@ -10,7 +10,7 @@ export function usePhoneAuthForm() {
   } = useForm<PhoneAuthFormData>({
     resolver: zodResolver(phoneAuthSchema),
     defaultValues: { phone: "" },
-    mode: "all",
+    mode: "onChange",
   });
 
   return {

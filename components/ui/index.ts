@@ -7,6 +7,7 @@ export * from "./card";
 export * from "./checkbox";
 export * from "./collapsible";
 export * from "./context-menu";
+export * from "./input";
 export * from "./dialog";
 export * from "./dropdown-menu";
 export * from "./hover-card";

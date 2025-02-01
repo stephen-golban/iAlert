@@ -18,7 +18,7 @@ const PhoneInput: React.FC<IPhoneInput> = ({
   const { formatPhoneNumber } = usePhoneInput();
   return (
     <View>
-      <View className="flex-row items-center gap-x-3">
+      <View className="flex-row items-center gap-x-3 w-full">
         {/* Country code container */}
         <Button
           size="xl"
@@ -42,11 +42,10 @@ const PhoneInput: React.FC<IPhoneInput> = ({
           autoCapitalize="none"
           selectionColor="white"
           keyboardType="phone-pad"
-          placeholderTextColor="white"
           placeholder="Enter your phone"
           textContentType="telephoneNumber"
           onChangeText={(text) => onChange(formatPhoneNumber(text))}
-          className="flex-1 bg-transparent-white text-white text-lg h-12 rounded-2xl px-4 native:h-16 border-0"
+          className="bg-transparent-white text-lg h-12 rounded-2xl px-4 native:h-16 border-transparent"
         />
       </View>
       {error && <Text className="text-red-500 text-sm mt-2">{error}</Text>}
