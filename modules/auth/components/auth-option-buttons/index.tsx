@@ -14,7 +14,7 @@ const AuthOptionButtons: React.FC<IAuthOptionButtons> = ({
   isPhoneAuth,
   toggleAuth,
 }) => {
-  const EmailPhoneIcon = isPhoneAuth ? Phone : Mail;
+  const EmailPhoneIcon = isPhoneAuth ? Mail : Phone;
   return (
     <>
       <View className="items-center mb-8">
@@ -29,7 +29,7 @@ const AuthOptionButtons: React.FC<IAuthOptionButtons> = ({
         >
           <EmailPhoneIcon size={14} color="white" />
           <Text className="text-white font-medium">
-            Continue with {isPhoneAuth ? "phone" : "email"}
+            Continue with {isPhoneAuth ? "email" : "phone"}
           </Text>
         </Button>
 

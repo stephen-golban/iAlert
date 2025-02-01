@@ -5,7 +5,7 @@ import { Controller } from "react-hook-form";
 
 import { View } from "react-native";
 import { Text } from "~/components/ui";
-import { AuthForm } from "../auth-form";
+import SubmitButton from "../submit-button";
 import { PhoneInput } from "~/components/common";
 
 import { type PhoneAuthFormData } from "./schema";
@@ -51,11 +51,13 @@ const PhoneAuthForm: React.FC<IPhoneAuthForm> = ({
         </Text>
       )}
 
-      <AuthForm.SubmitButton
+      <SubmitButton
         title={buttonText}
         isDisabled={!isValid}
         isSubmitting={isSubmitting}
-        onPress={handleSubmit(onSubmit)}
+        onPress={handleSubmit((d) =>
+          onSubmit({ phone: d.phone.replaceAll(" ", "") })
+        )}
       />
     </>
   );

@@ -1,7 +1,9 @@
 import React from "react";
 
 import { useOtpForm } from "./hook";
+import { getOtpSubtitle } from "./util";
 import { Controller } from "react-hook-form";
+import { useLocalSearchParams } from "expo-router";
 
 import { View } from "react-native";
 import OtpResend from "./otp-resend";
@@ -10,7 +12,16 @@ import { LayoutWrapper } from "../components";
 import { CustomOtpInput } from "~/components/common";
 
 export function OtpScreen() {
+  const { type, input } = useLocalSearchParams<{
+    type: string;
+    input: string;
+  }>();
+
+  const isPhoneMode = type === "phone";
+
   const { control, errors, isSubmitting, handleSubmit } = useOtpForm();
+
+  const subtitle = getOtpSubtitle(type, input);
 
   return (
     <LayoutWrapper loading={isSubmitting}>
@@ -18,9 +29,7 @@ export function OtpScreen() {
         We've sent a {"\n"}verification code.
       </Text>
 
-      <Text className="text-lg text-white/80 mb-8">
-        We've sent a verification code to your phone number +373 XXX XXX XXX
-      </Text>
+      <Text className="text-lg text-white/80 mb-8">{subtitle}</Text>
 
       <Text className="text-3xl font-bold text-white mt-4">6-digit code</Text>
 

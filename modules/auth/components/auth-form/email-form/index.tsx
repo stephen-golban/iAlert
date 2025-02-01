@@ -4,7 +4,7 @@ import { useEmailAuthForm } from "./hook";
 
 import { View } from "react-native";
 import { Text } from "~/components/ui";
-import { AuthForm } from "../auth-form";
+import SubmitButton from "../submit-button";
 import { Controller } from "react-hook-form";
 import { EmailInput, PasswordInput } from "~/components/common";
 
@@ -70,7 +70,7 @@ const EmailAuthForm: React.FC<IEmailAuthForm> = ({
         </Text>
       )}
 
-      <AuthForm.SubmitButton
+      <SubmitButton
         title={buttonText}
         isDisabled={!isValid}
         isSubmitting={isSubmitting}

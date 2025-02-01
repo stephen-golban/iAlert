@@ -10,3 +10,4 @@ export * from "./keyboard-aware";
 export * from "./loading-spinner";
 export * from "./custom-otp-input";
 export * from "./full-screen-loader";
+export * from "./animated-form-wrapper";

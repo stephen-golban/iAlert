@@ -1,39 +1,14 @@
 import React from "react";
 
-import { useRouter } from "expo-router";
-import { useToggle } from "usehooks-ts";
-
-import {
-  AuthForm,
-  EmailAuthForm,
-  LayoutWrapper,
-  PhoneAuthForm,
-  AuthOptionButtons,
-} from "../components";
 import { View } from "react-native";
-import { KeyboardAware } from "~/components/common";
+import { KeyboardAware, AnimatedFormWrapper } from "~/components/common";
+import { AuthForm, LayoutWrapper, AuthOptionButtons } from "../components";
 
-import { getSignInContent } from "./mock";
+import { useSignIn } from "./hook";
 
 export function SignInScreen() {
-  const [isPhoneAuth, toggle] = useToggle(true);
-
-  const router = useRouter();
-  const onSubmit = async (data: any) => {
-    try {
-      // TODO: Implement sign in logic
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate API call delay
-      router.navigate("/(auth)/otp");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const content = getSignInContent(isPhoneAuth);
-
-  const goToForgotPassword = () => {
-    router.navigate("/(auth)/forgot-password");
-  };
+  const { isPhoneAuth, toggle, onSubmit, goToForgotPassword, content } =
+    useSignIn();
 
   return (
     <LayoutWrapper>
@@ -41,19 +16,21 @@ export function SignInScreen() {
         <View className="flex-1 bg-transparent">
           <AuthForm.TopText title={content.title} subtitle={content.subtitle} />
 
-          {isPhoneAuth ? (
-            <PhoneAuthForm
-              onSubmit={onSubmit}
-              questionText={content.question}
-              onPressQuestion={goToForgotPassword}
-            />
-          ) : (
-            <EmailAuthForm
-              onSubmit={onSubmit}
-              questionText={content.question}
-              onPressQuestion={goToForgotPassword}
-            />
-          )}
+          <AnimatedFormWrapper animationKey={isPhoneAuth ? "phone" : "email"}>
+            {isPhoneAuth ? (
+              <AuthForm.Phone
+                onSubmit={onSubmit}
+                questionText={content.question}
+                onPressQuestion={goToForgotPassword}
+              />
+            ) : (
+              <AuthForm.Email
+                onSubmit={onSubmit}
+                questionText={content.question}
+                onPressQuestion={goToForgotPassword}
+              />
+            )}
+          </AnimatedFormWrapper>
           <AuthOptionButtons toggleAuth={toggle} isPhoneAuth={isPhoneAuth} />
         </View>
       </KeyboardAware>
