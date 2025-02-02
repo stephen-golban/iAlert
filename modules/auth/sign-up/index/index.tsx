@@ -9,7 +9,7 @@ import { AuthForm, LayoutWrapper } from "../../components";
 import { CONTENT } from "./mock";
 import { useRouter } from "expo-router";
 
-export function PhoneNumberScreen() {
+export function SignUpIndexScreen() {
   const router = useRouter();
   const { onSubmit } = useSignUp();
 

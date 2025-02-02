@@ -1,5 +1,5 @@
-import { PhoneNumberScreen } from "~/modules/auth";
+import { SignUpIndexScreen } from "~/modules/auth";
 
-export default function PhoneNumber() {
-  return <PhoneNumberScreen />;
+export default function SignUpIndex() {
+  return <SignUpIndexScreen />;
 }

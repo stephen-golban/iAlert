@@ -6,7 +6,7 @@ export function WelcomeButtons() {
   return (
     <View className="w-full gap-y-4">
       <Link
-        href="/(auth)/sign-up"
+        href="/(auth)/sign-up/user-info"
         className="bg-white rounded-full py-5 text-center"
       >
         <Text className="text-black text-base font-medium">Create account</Text>

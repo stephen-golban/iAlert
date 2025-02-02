@@ -22,7 +22,6 @@ const EmailInput: React.FC<IEmailInput> = ({ onChange, ...props }) => {
       selectionColor="white"
       returnKeyType="next"
       enablesReturnKeyAutomatically
-      className="bg-transparent-white text-white text-lg h-12 rounded-2xl px-4 native:h-16 border-transparent"
       {...props}
     />
   );

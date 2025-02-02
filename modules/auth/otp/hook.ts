@@ -21,12 +21,12 @@ export function useOtpForm() {
 
   const onSubmit = async (dto: OtpFormData) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate API call delay
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call delay
 
       // Simulate API error (70% chance of error)
-      if (Math.random() > 0.3) {
-        throw new Error("Invalid verification code");
-      }
+      // if (Math.random() > 0.3) {
+      //   throw new Error("Invalid verification code");
+      // }
 
       if (isSignUpFlow) {
         return router.navigate("/(auth)/sign-up/user-info");

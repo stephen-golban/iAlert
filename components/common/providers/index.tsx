@@ -13,6 +13,7 @@ import {
 } from "@react-navigation/native";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 
 interface ProvidersProps extends React.PropsWithChildren {
   onLayout: () => Promise<void>;
@@ -37,7 +38,9 @@ export function Providers({ children, onLayout }: ProvidersProps) {
         <ThemeProvider
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
-          <GestureHandlerRootView>{children}</GestureHandlerRootView>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <BottomSheetModalProvider>{children}</BottomSheetModalProvider>
+          </GestureHandlerRootView>
         </ThemeProvider>
       </SafeAreaProvider>
     </PersistQueryClientProvider>

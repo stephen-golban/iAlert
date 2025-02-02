@@ -48,7 +48,7 @@ const Input = React.forwardRef<React.ElementRef<typeof TextInput>, InputProps>(
           <TextInput
             ref={ref}
             className={cn(
-              "web:flex h-10 native:h-12 rounded-md border border-input bg-background px-3 web:py-2 text-base lg:text-sm native:text-lg native:leading-[1.25] text-white web:ring-offset-background file:border-0 file:bg-transparent file:font-medium web:focus-visible:outline-none web:focus-visible:ring-2 web:focus-visible:ring-ring web:focus-visible:ring-offset-2",
+              "bg-transparent-white h-16 rounded-2xl px-4 border border-transparent text-lg native:leading-[1.25] text-white file:border-0 file:bg-transparent file:font-medium",
               rightElement && "pr-10",
               props.editable === false && "opacity-50 web:cursor-not-allowed",
               (isPhoneInput || isPasswordInput) && "flex-1",
@@ -59,7 +59,7 @@ const Input = React.forwardRef<React.ElementRef<typeof TextInput>, InputProps>(
               "text-muted-foreground",
               placeholderClassName
             )}
-            placeholderTextColor="#666"
+            placeholderTextColor="rgba(255, 255, 255, 0.6)"
             {...props}
             selectionColor={error ? "rgb(242, 62, 48)" : "white"}
           />
@@ -70,7 +70,7 @@ const Input = React.forwardRef<React.ElementRef<typeof TextInput>, InputProps>(
           )}
         </InputWrapper>
         {error && !hideErrorMessage && (
-          <Text className="text-red-500 text-sm mt-2">{error}</Text>
+          <Text className="text-destructive text-sm mt-2">{error}</Text>
         )}
       </>
     );
