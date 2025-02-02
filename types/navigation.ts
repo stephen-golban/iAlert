@@ -3,7 +3,7 @@ export type AuthStackParamList = {
   "sign-in": undefined;
   otp: undefined;
   "forgot-password": undefined;
-  "sign-up/phone-number": undefined;
+  "sign-up/index": undefined;
   "sign-up/otp": {
     phoneNumber: string;
   };
