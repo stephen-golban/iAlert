@@ -10,7 +10,7 @@ const resolver = zodResolver(otpSchema);
 export function useOtpForm() {
   const router = useRouter();
   const segments = useSegments();
-  const isSignUpFlow = segments[0] === "sign-up";
+  const isSignUpFlow = segments.join().includes("sign-up");
 
   const hook = useForm<OtpFormData>({
     resolver,
@@ -29,7 +29,7 @@ export function useOtpForm() {
       }
 
       if (isSignUpFlow) {
-        return router.replace("/sign-up/user-info");
+        return router.navigate("/(auth)/sign-up/user-info");
       }
 
       return;

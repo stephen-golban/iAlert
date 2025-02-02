@@ -9,11 +9,13 @@ import SubmitButton from "../submit-button";
 import { PhoneInput } from "~/components/common";
 
 import { type PhoneAuthFormData } from "./schema";
+import { cn } from "~/lib/utils";
 
 interface IPhoneAuthForm {
   buttonText?: string;
   questionText?: string;
   hideQuestion?: boolean;
+  pushButtonDown?: boolean;
   onPressQuestion?(): void;
   onSubmit: (args: PhoneAuthFormData) => void;
 }
@@ -21,6 +23,7 @@ interface IPhoneAuthForm {
 const PhoneAuthForm: React.FC<IPhoneAuthForm> = ({
   onSubmit,
   questionText,
+  pushButtonDown,
   onPressQuestion,
   hideQuestion = false,
   buttonText = "Continue",
@@ -30,7 +33,7 @@ const PhoneAuthForm: React.FC<IPhoneAuthForm> = ({
 
   return (
     <>
-      <View className="mb-4">
+      <View className={cn(pushButtonDown && "flex-1")}>
         <Controller
           control={control}
           name="phone"
@@ -43,13 +46,13 @@ const PhoneAuthForm: React.FC<IPhoneAuthForm> = ({
             />
           )}
         />
-      </View>
 
-      {!hideQuestion && (
-        <Text className="text-white text-base" onPress={onPressQuestion}>
-          {questionText}
-        </Text>
-      )}
+        {!hideQuestion && (
+          <Text className="text-white text-base mt-4" onPress={onPressQuestion}>
+            {questionText}
+          </Text>
+        )}
+      </View>
 
       <SubmitButton
         title={buttonText}

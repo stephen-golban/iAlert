@@ -1,5 +1,5 @@
-import { OTPScreen } from "~/modules/auth";
+import { OtpScreen } from "~/modules/auth";
 
 export default function OTP() {
-  return <OTPScreen />;
+  return <OtpScreen />;
 }

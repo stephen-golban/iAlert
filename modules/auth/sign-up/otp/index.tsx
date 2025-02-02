@@ -1,9 +1,5 @@
-import { View, Text } from "react-native";
+import { OtpScreen } from "../../otp";
 
-export function OTPScreen() {
-  return (
-    <View>
-      <Text>OTP Verification Screen</Text>
-    </View>
-  );
+export function SignUpOtpScreen() {
+  return <OtpScreen />;
 }

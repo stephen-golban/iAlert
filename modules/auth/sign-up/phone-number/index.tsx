@@ -1,9 +1,35 @@
-import { View, Text } from "react-native";
+import React from "react";
+
+import useSignUp from "./hook";
+
+import { View } from "react-native";
+import { KeyboardAware } from "~/components/common";
+import { AuthForm, LayoutWrapper } from "../../components";
+
+import { CONTENT } from "./mock";
+import { useRouter } from "expo-router";
 
 export function PhoneNumberScreen() {
+  const router = useRouter();
+  const { onSubmit } = useSignUp();
+
+  const onPressQuestion = () => router.navigate("/(auth)/sign-in");
+
   return (
-    <View>
-      <Text>Phone Number Collection Screen</Text>
-    </View>
+    <LayoutWrapper>
+      <KeyboardAware>
+        <View className="flex-1 bg-transparent">
+          <AuthForm.TopText title={CONTENT.title} subtitle={CONTENT.subtitle} />
+
+          <AuthForm.Phone
+            pushButtonDown
+            onSubmit={onSubmit}
+            questionText={CONTENT.question}
+            buttonText={CONTENT.button_text}
+            onPressQuestion={onPressQuestion}
+          />
+        </View>
+      </KeyboardAware>
+    </LayoutWrapper>
   );
 }
