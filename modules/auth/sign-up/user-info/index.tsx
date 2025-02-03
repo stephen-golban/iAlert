@@ -1,11 +1,14 @@
 import React from "react";
 import { View } from "react-native";
 
+import { useRouter } from "expo-router";
+
 import UserInfoForm from "./form";
 import { KeyboardAware } from "~/components/common";
 import { AuthForm, LayoutWrapper } from "../../components";
 
 export function UserInfoScreen() {
+  const router = useRouter();
   return (
     <LayoutWrapper>
       <KeyboardAware>
@@ -15,7 +18,9 @@ export function UserInfoScreen() {
             subtitle="Please provide your real personal details to maintain data accuracy and ensure proper service delivery"
           />
 
-          <UserInfoForm onSubmit={console.log} />
+          <UserInfoForm
+            onSubmit={() => router.navigate("/(auth)/sign-up/car-info")}
+          />
         </View>
       </KeyboardAware>
     </LayoutWrapper>

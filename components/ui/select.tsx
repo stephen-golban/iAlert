@@ -17,14 +17,15 @@ const SelectValue = SelectPrimitive.Value;
 
 const SelectTrigger = React.forwardRef<
   SelectPrimitive.TriggerRef,
-  SelectPrimitive.TriggerProps
->(({ className, children, ...props }, ref) => (
+  SelectPrimitive.TriggerProps & { error?: string }
+>(({ className, children, error, ...props }, ref) => (
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex flex-row h-10 native:h-12 items-center text-sm justify-between rounded-md border border-input bg-background px-3 py-2 web:ring-offset-background text-muted-foreground web:focus:outline-none web:focus:ring-2 web:focus:ring-ring web:focus:ring-offset-2 [&>span]:line-clamp-1",
+      "flex flex-row h-16 items-center text-lg justify-between rounded-2xl border border-transparent bg-transparent-white px-3 py-2 web:ring-offset-background text-white web:focus:outline-none web:focus:ring-2 web:focus:ring-ring web:focus:ring-offset-2 [&>span]:line-clamp-1",
       props.disabled && "web:cursor-not-allowed opacity-50",
-      className
+      className,
+      error && "border-destructive"
     )}
     {...props}
   >

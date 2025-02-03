@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useRouter, useSegments } from "expo-router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type OtpFormData, otpSchema } from "./schema";
+import { Keyboard } from "react-native";
 
 const defaultValues = { otp: "" };
 
@@ -21,6 +22,7 @@ export function useOtpForm() {
 
   const onSubmit = async (dto: OtpFormData) => {
     try {
+      Keyboard.dismiss();
       await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call delay
 
       // Simulate API error (70% chance of error)

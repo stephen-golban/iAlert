@@ -61,6 +61,7 @@ const Input = React.forwardRef<React.ElementRef<typeof TextInput>, InputProps>(
             )}
             placeholderTextColor="rgba(255, 255, 255, 0.6)"
             {...props}
+            autoFocus={false}
             selectionColor={error ? "rgb(242, 62, 48)" : "white"}
           />
           {showRightElement && (

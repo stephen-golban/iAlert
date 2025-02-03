@@ -19,7 +19,7 @@ export function useUserInfoForm() {
   const hook = useForm<UserInfoFormData>({
     resolver,
     defaultValues,
-    mode: "all",
+    mode: "onChange",
   });
 
   // Validate age is at least 16 years old

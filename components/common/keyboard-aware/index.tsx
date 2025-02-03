@@ -1,66 +1,20 @@
 import React from "react";
 import {
-  View,
-  Keyboard,
-  Platform,
-  ViewStyle,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-} from "react-native";
+  KeyboardAwareScrollView,
+  type KeyboardAwareScrollViewProps,
+} from "react-native-keyboard-controller";
 
-interface KeyboardAwareProps {
-  children: React.ReactNode;
-  style?: ViewStyle;
-  enabled?: boolean;
-}
+interface KeyboardAwareProps extends KeyboardAwareScrollViewProps {}
 
-export function KeyboardAware({
-  children,
-  style,
-  enabled = true,
-}: KeyboardAwareProps) {
+export function KeyboardAware({ children, ...props }: KeyboardAwareProps) {
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <KeyboardAvoidingView
-        enabled={enabled}
-        style={{ flex: 1 }}
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        contentContainerStyle={[{ flex: 1, width: "100%" }, style]}
-      >
-        <View style={{ flex: 1 }}>{children}</View>
-      </KeyboardAvoidingView>
-    </TouchableWithoutFeedback>
+    <KeyboardAwareScrollView
+      {...props}
+      bottomOffset={200}
+      className="flex-1"
+      showsVerticalScrollIndicator={false}
+    >
+      {children}
+    </KeyboardAwareScrollView>
   );
 }
-
-// import React from "react";
-// import { View, ViewStyle } from "react-native";
-// import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-
-// interface KeyboardAwareProps {
-//   children: React.ReactNode;
-//   style?: ViewStyle;
-//   enabled?: boolean;
-// }
-
-// export function KeyboardAware({
-//   children,
-//   style,
-//   enabled = true,
-// }: KeyboardAwareProps) {
-//   return (
-//     <KeyboardAwareScrollView
-//       enableOnAndroid
-//       enableAutomaticScroll
-//       scrollEnabled={enabled}
-//       extraScrollHeight={200}
-//       keyboardDismissMode="on-drag"
-//       enableResetScrollToCoords={false}
-//       keyboardShouldPersistTaps="handled"
-//       showsVerticalScrollIndicator={false}
-//       contentContainerStyle={[{ flex: 1, width: "100%" }, style]}
-//     >
-//       <View style={{ flex: 1 }}>{children}</View>
-//     </KeyboardAwareScrollView>
-//   );
-// }

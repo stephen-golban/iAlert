@@ -35,33 +35,35 @@ const UserInfoForm: React.FC<IUserInfoForm> = ({
         />
       </View>
       <View className="flex-row items-center gap-x-4">
-        <Controller
-          control={control}
-          name="firstName"
-          render={({ field: { onChange, ...rest } }) => (
-            <Input
-              {...rest}
-              autoFocus
-              className="flex-1"
-              onChangeText={onChange}
-              placeholder="First Name"
-              error={errors?.firstName?.message}
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="lastName"
-          render={({ field: { onChange, ...rest } }) => (
-            <Input
-              {...rest}
-              className="flex-1"
-              onChangeText={onChange}
-              placeholder="Last Name"
-              error={errors?.firstName?.message}
-            />
-          )}
-        />
+        <View className="flex-1">
+          <Controller
+            control={control}
+            name="firstName"
+            render={({ field: { onChange, ...rest } }) => (
+              <Input
+                {...rest}
+                autoFocus
+                onChangeText={onChange}
+                placeholder="First Name"
+                error={errors?.firstName?.message}
+              />
+            )}
+          />
+        </View>
+        <View className="flex-1">
+          <Controller
+            control={control}
+            name="lastName"
+            render={({ field: { onChange, ...rest } }) => (
+              <Input
+                {...rest}
+                onChangeText={onChange}
+                placeholder="Last Name"
+                error={errors?.firstName?.message}
+              />
+            )}
+          />
+        </View>
       </View>
 
       <View>
